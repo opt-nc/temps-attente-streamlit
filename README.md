@@ -4,6 +4,13 @@ Chaque année, l'[Université de Nouvelle-Calédonie](https://unc.nc/) challenge
 sur des projets tutorés afin de leur donner une première expérience de développement 
 sur des problématiques en lien avec le monde de l'entreprise.
 
+# 🧑‍🤝‍🧑 Team
+
+- 👦 LEAD Dev : [Malcolm Bertaina](https://github.com/MalcolmBrt)
+- 👦 Dev : [Morgan CARRE](https://github.com/morgancarre)
+- 🧔 PO/Tuteur : [Adrien](https://dev.to/adriens)
+- 👱‍♀️ Dev Expert : [Michèle BARRE](https://github.com/mbarre/) 
+
 # 🍿 Video introductive
 
 [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/yOAKC5cTDc8/0.jpg)](https://www.youtube.com/watch?v=yOAKC5cTDc8)
