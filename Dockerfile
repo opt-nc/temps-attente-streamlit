@@ -9,11 +9,14 @@ RUN apt-get update && apt-get install -y \
     curl \
     software-properties-common \
     git \
+    tzdata \
     && rm -rf /var/lib/apt/lists/*
+    
+ENV TZ=Pacific/Noumea
 
 COPY . .
 
-RUN pip3 install streamlit
+RUN pip install -r requirements.txt
 
 EXPOSE 8501
 
