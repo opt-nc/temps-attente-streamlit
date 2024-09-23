@@ -52,28 +52,28 @@ au plus tard une semaine avant la soutenance. Faute de quoi, deux options :**
 
 Voici comment lancer le projet sur votre machine :
 
-1. 🖥️ **Cloner le dépôt**  
-   ```
-   git clone https://github.com/adriens/temps-attente-streamlit
-   ```
 
-2. 🐳 **Compiler l'image Docker de l'application**  
-   ```
-   docker build -t hellooptnc .
-   ```
+```sh
+git clone https://github.com/adriens/temps-attente-streamlit
+cd temps-attente-streamlit
 
-3. ▶️ **Démarrer l'application** via Docker  
-   ```
-   docker run -p 8501:8501 hellooptnc
-   ```
+# Builderl'image  
+docker build -t hellooptnc .
 
-4. 🌐 **Accéder à l'application** depuis un navigateur web à l'adresse suivante :  
-   ```
-   localhost:8501
-   ```
+# Démarrer l'application** via Docker  
+docker run -p 80:8501 hellooptnc
+```
 
-5. 👀 **Vérifier** que la page web affiche bien "Hello OPT-NC"  
-   ![Capture d'écran 2024-09-23 174040](https://github.com/user-attachments/assets/b6cac500-af85-4006-9f10-63ad32eb0ff4)
+
+Pour accéder à l'application, aller sur : http://localhost:8501
+
+```sh
+xdg-open http://localhost:8501
+```
+
+👀 **Vérifier** que la page web affiche bien "Hello OPT-NC" 
+
+![Capture d'écran 2024-09-23 174040](https://github.com/user-attachments/assets/b6cac500-af85-4006-9f10-63ad32eb0ff4)
 
 
 
