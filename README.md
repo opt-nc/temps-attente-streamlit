@@ -9,7 +9,7 @@ sur des problématiques en lien avec le monde de l'entreprise.
 - 👦 LEAD Dev : [Malcolm Bertaina](https://github.com/MalcolmBrt)
 - 👦 Dev : [Morgan CARRE](https://github.com/morgancarre)
 - 🧔 PO/Tuteur : [Adrien](https://dev.to/adriens)
-- 👱‍♀️ Dev Expert : [Michèle BARRE](https://github.com/mbarre/) 
+- 👱‍♀️ Dev Expert : [Michèle BARRE](https://github.com/mbarre/)
 
 # 🍿 Video introductive
 
@@ -36,48 +36,75 @@ Selon [leur définition](https://iut.unc.nc/espace-entreprises/projets-tutores/)
 
 # 📦 Livrables
 
-Le tuteur produire l'évaluation finale dès lors que les livrables ci-dessous auront été soumis aux tuteur
+Le tuteur produira l'évaluation finale dès lors que les livrables ci-dessous auront été soumis au tuteur :
 
 - 📰 Support de présentation au format pdf (**une semaine avant la soutenance pour review**)
-- 📘 Rapport au formal pdf (**une semaine avant souteance pour review**)
-- 🎦 Démo video au format `mp4` (`20'` max) livrée par les étudiants durant laquelle le produit est démontré, et pour un public général (que l'OPT utilisera sur [`dev.to/optnc`](https://dev.to/optnc))
+- 📘 Rapport au format pdf (**une semaine avant soutenance pour review**)
+- 🎦 Démo vidéo au format mp4 (20' max) livrée par les étudiants, démontrant le produit pour un public général (que l'OPT utilisera sur [dev.to/optnc](https://dev.to/optnc))
 
-**☝️ L'évaluation du projet sera effectuée dès lors que tous ces élements auront été fournis en temps et en heure,
-au plus tard une semaine avant la soutenance. Faute de quoi deux options :**
+**☝️ L'évaluation du projet sera effectuée dès lors que tous ces éléments auront été fournis en temps et en heure,
+au plus tard une semaine avant la soutenance. Faute de quoi, deux options :**
 
 - L'évaluation sera **livrée une semaine après obtention des livrables**
 - L'évaluation est malgré tout livrée mais **sur la base d'une copie blanche**
 
+# 🚀 Lancer le projet
 
-## 🎙️ Pitch
+Voici comment lancer le projet sur votre machine :
 
-Ci-dessous l'elevator pitch : 
+
+```sh
+git clone https://github.com/adriens/temps-attente-streamlit
+cd temps-attente-streamlit
+
+# Builderl'image  
+docker build -t hellooptnc .
+
+# Démarrer l'application** via Docker  
+docker run -p 80:8501 hellooptnc
+```
+
+
+Pour accéder à l'application, aller sur : http://localhost:8501
+
+```sh
+xdg-open http://localhost:8501
+```
+
+👀 **Vérifier** que la page web affiche bien "Hello OPT-NC" 
+
+![Capture d'écran 2024-09-23 174040](https://github.com/user-attachments/assets/b6cac500-af85-4006-9f10-63ad32eb0ff4)
+
+
+
+# 🎙️ Pitch
+
+Ci-dessous l'elevator pitch :
 
 > Ce projet tutoré a pour but de ....
 
-## 🤝 DoD (_Definition of Done_)
+# 🤝 DoD (_Definition of Done_)
 
-Ci-dessous les éléments qui permettent de définir que l'objectif aura été atteint:
+Ci-dessous les éléments qui permettent de définir que l'objectif aura été atteint :
 
 - ✔️ Objectif 1
 - ✔️ Objectif 2
 
-
 # 🏆 Projets tutorés remarquables
 
-Ci-dessous une sélection de projets tutorés remarquables:
+Ci-dessous une sélection de projets tutorés remarquables :
 
-- [`domaine-nc-javafx`](https://github.com/adriens/domaine-nc-javafx) (_"Application JavaFX pour consulter les données de DOMAINE.nc "_)
+- [domaine-nc-javafx](https://github.com/adriens/domaine-nc-javafx) (_"Application JavaFX pour consulter les données de DOMAINE.nc "_)
 - [🧑‍🎓 Follow package delivery in New-Caledonia w/ Discord 🤖](https://dev.to/optnc/follow-delivery-in-new-caledonia-with-rapidapi-4bh9)
 - [🤖 Un assistant en réalité augmentée pour suivre la livraison de ses colis](https://youtu.be/ddqJ-ZAlk9U)
 - [🙌 API marketplace & Open Innovation w/ UNC students 🎓](https://dev.to/optnc/api-marketplace-open-innovation-w-unc-students-50fc)
 
-👉... à vous de jouer pour y inscrire le votre 💪.
+👉 ... à vous de jouer pour y inscrire le vôtre 💪.
 
 <table>
   <tr>
     <td>
-        <a href = "https://office.opt.nc/"><img src="https://raw.githubusercontent.com/opt-nc/.github/main/img/nc_opt.gif" width="200"/></a>
+        <a href="https://office.opt.nc/"><img src="https://raw.githubusercontent.com/opt-nc/.github/main/img/nc_opt.gif" width="200"/></a>
     </td>
     <td>
         <a href="https://rapidapi.com/organization/opt-nc" target="_blank">
