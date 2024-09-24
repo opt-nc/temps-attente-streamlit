@@ -81,14 +81,19 @@ xdg-open http://localhost:8501
 
 Ci-dessous l'elevator pitch :
 
-> Ce projet tutoré a pour but de ....
+> Ce projet tutoré a pour but de fournir une application web responsive (TV, PC, tablette) développée sur Streamlit, sous forme d'image Docker, et
+> qui permet d'afficher en direct le temps d'attente d'une agence en direct, ainsi que la tendance de la journée afin d'optimiser l'expérience client.
 
 # 🤝 DoD (_Definition of Done_)
 
 Ci-dessous les éléments qui permettent de définir que l'objectif aura été atteint :
 
-- ✔️ Objectif 1
-- ✔️ Objectif 2
+- ✔️ On peut démarrer l'application comme une image Docker sous Linux
+- ✔️ Le site web consomme l'API depuis le portail d'API APIGEE
+- ✔️ On peut choisir une agence via un menu
+- ✔️ On peut choisir une agence et afficher son temps d'attente avec un dataviz simple et éclairant
+- ✔️ On peut voir l'historique de la journée, la tendance afin d'optimiser sa venue en agence
+
 
 # 🏆 Projets tutorés remarquables
 
