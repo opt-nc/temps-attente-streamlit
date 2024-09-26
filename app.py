@@ -2,7 +2,10 @@ import streamlit as st
 from datetime import datetime
 from streamlit_autorefresh import st_autorefresh
 
+st.set_page_config(page_title='Temps d\'attente en agence OPT-NC', layout = 'wide', page_icon = 'assets/images/favicon.jpg', initial_sidebar_state = 'auto')
+
 st_autorefresh(interval=2 * 60 * 1000, key="dataframerefresh")
+
 
 st.write("Hello OPT-NC")
 
