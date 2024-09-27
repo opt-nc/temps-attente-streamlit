@@ -9,4 +9,4 @@ def get_current_time():
 def load_apikey():
     # Charger le fichier .env
     load_dotenv()
-    return os.getenv("APIKEY")
+    return os.getenv("WAITINGTIME_APIKEY")
