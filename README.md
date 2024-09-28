@@ -61,7 +61,7 @@ cd temps-attente-streamlit
 docker build -t hellooptnc .
 
 # Créer un fichier .env avec la clé API
-WAITINGTIME_APIKEY=[clé API]
+OPTNC_WAITINGTIME_APIKEY=[clé API]
 
 # Démarrer l'application via Docker  
 docker run -p 80:8501 --env-file .env hellooptnc

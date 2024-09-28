@@ -7,7 +7,6 @@ st.set_page_config(page_title='Temps d\'attente en agence OPT-NC', layout = 'wid
 st_autorefresh(interval=2 * 60 * 1000, key="dataframerefresh")
 
 apikey = load_apikey()
-print(apikey)
 
 st.write("Hello OPT-NC")
 
