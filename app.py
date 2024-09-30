@@ -12,8 +12,9 @@ headers = {
     "x-apikey": apikey,
     "Content-Type": "application/json"
 }
-api_url_communes = "https://api.opt.nc/temps-attente-agences/communes"
-api_url_agences = "https://api.opt.nc/temps-attente-agences/agences"
+
+API_TEMPS_ATTENTE_BASE_URL = "https://api.opt.nc/temps-attente-agences/"
+
 
 
 st.write("Hello OPT-NC")
@@ -25,7 +26,7 @@ st.image("assets/images/logo_opt.png", width=250)
 st.image("assets/images/logo_unc.jpg", width=250)
 
 # requête pour récuperer les commune
-response_communes = requests.get(api_url_communes, headers=headers)
+response_communes = requests.get(API_TEMPS_ATTENTE_BASE_URL+"communes", headers=headers)
 
 if response_communes.status_code == 200:
     # liste des communes
@@ -36,7 +37,7 @@ if response_communes.status_code == 200:
     selected_commune = st.sidebar.selectbox("Sélectionnez une commune :", communes_maj)
     
     # Requête pour récuperer agences avec la commune sélectionner
-    response_agences = requests.get(api_url_agences, headers=headers, params={"commune": selected_commune})
+    response_agences = requests.get(API_TEMPS_ATTENTE_BASE_URL+"agences", headers=headers, params={"commune": selected_commune})
 
     if response_agences.status_code == 200:
         # liste de tout les "bâtiments" OPT
