@@ -54,8 +54,23 @@ if response_communes.status_code == 200:
         
         # menu déroulant pour sélection agence
         selected_agence = st.sidebar.selectbox("Sélectionnez une agence :", designation_agences)
+        
+        # ajout temps d'attente en texte
+        for agence in agences_OPT :
+            if agence["designation"]==selected_agence:
+                temps_attente_agence=(agence["realMaxWaitingTimeMs"])/1000
+        
+    
+        minutes = int(temps_attente_agence // 60)
+        secondes = int(temps_attente_agence % 60)
+
+        st.write(f"Il y a {minutes} min {secondes} s d'attente à cette agence.")
+
+
 
     else:
         st.write(f"Erreur lors de la récupération des agences : {response_agences.status_code}")
 else:
     st.write(f"Erreur lors de la récupération des communes : {response_communes.status_code}")
+
+        
