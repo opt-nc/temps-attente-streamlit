@@ -54,7 +54,7 @@ if response_communes.status_code == 200:
         # ajout temps d'attente en texte
         for agence in agences_OPT :
             if agence["designation"]==selected_agence:
-                temps_attente_agence=(agence["realMaxWaitingTimeMs"])/1000
+                temps_attente_agence=(agence["realAvgWaitingTimeMs"])/1000
         
         gauge(round(temps_attente_agence/60))
 
