@@ -1,6 +1,6 @@
 import streamlit as st
 from streamlit_autorefresh import st_autorefresh
-from utils import load_apikey, get_current_time
+from utils import load_apikey, get_current_time, gauge
 import requests
 
 st.set_page_config(page_title='Temps d\'attente en agence OPT-NC', layout = 'wide', page_icon = 'assets/images/favicon.jpg', initial_sidebar_state = 'auto')
@@ -14,10 +14,6 @@ headers = {
 }
 
 API_TEMPS_ATTENTE_BASE_URL = "https://api.opt.nc/temps-attente-agences/"
-
-
-
-st.write("Hello OPT-NC")
 
 current_time = get_current_time()
 st.write(current_time)
@@ -60,13 +56,7 @@ if response_communes.status_code == 200:
             if agence["designation"]==selected_agence:
                 temps_attente_agence=(agence["realMaxWaitingTimeMs"])/1000
         
-    
-        minutes = int(temps_attente_agence // 60)
-        secondes = int(temps_attente_agence % 60)
-
-        st.write(f"Il y a {minutes} min {secondes} s d'attente à cette agence.")
-
-
+        gauge(round(temps_attente_agence/60))
 
     else:
         st.write(f"Erreur lors de la récupération des agences : {response_agences.status_code}")
