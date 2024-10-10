@@ -16,10 +16,12 @@ headers = {
 API_TEMPS_ATTENTE_BASE_URL = "https://api.opt.nc/temps-attente-agences/"
 
 current_time = get_current_time()
-st.write(current_time)
-
-st.image("assets/images/logo_opt.png", width=250)
-st.image("assets/images/logo_unc.jpg", width=250)
+st.markdown(
+    f"""
+    <h1 style='text-align: center;'>{current_time}</h1>
+    """, 
+    unsafe_allow_html=True
+)
 
 # requête pour récuperer les commune
 response_communes = requests.get(API_TEMPS_ATTENTE_BASE_URL+"communes", headers=headers)
@@ -50,6 +52,10 @@ if response_communes.status_code == 200:
         
         # menu déroulant pour sélection agence
         selected_agence = st.sidebar.selectbox("Sélectionnez une agence :", designation_agences)
+
+        # affichage logos partenaires
+        st.sidebar.image("assets/images/logo_opt.png", width=250)
+        st.sidebar.image("assets/images/logo_unc.jpg", width=250)
         
         # ajout temps d'attente en texte
         for agence in agences_OPT :
@@ -62,5 +68,3 @@ if response_communes.status_code == 200:
         st.write(f"Erreur lors de la récupération des agences : {response_agences.status_code}")
 else:
     st.write(f"Erreur lors de la récupération des communes : {response_communes.status_code}")
-
-        
