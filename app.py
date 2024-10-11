@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_autorefresh import st_autorefresh
-from utils import *
+from utils import INTERVALLE_AUTOREFRESH, get_current_time, gauge, fetch_communes, fetch_agences
+
 
 st.set_page_config(page_title='Temps d\'attente en agence OPT-NC', layout = 'wide', page_icon = 'assets/images/favicon.jpg', initial_sidebar_state = 'auto')
 
