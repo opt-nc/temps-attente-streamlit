@@ -85,3 +85,13 @@ def fetch_agences(commune):
     else:
         st.error(f"Erreur lors de la récupération des agences : {response_agences.status_code}")
         return []
+
+@st.cache_data(ttl=INTERVALLE_AUTOREFRESH, show_spinner=False)
+def fetch_agence_by_id(id_agence):
+    response = requests.get(API_TEMPS_ATTENTE_BASE_URL+f"agences/{id_agence}", headers=headers)
+    if response.status_code == 200:
+        agence = response.json()
+        return agence
+    else:
+        st.error(f"Erreur lors de la récupération de l'agence {id_agence} : {response.status_code}")
+        return []
