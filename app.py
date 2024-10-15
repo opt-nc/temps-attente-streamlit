@@ -61,3 +61,13 @@ if communes:
 # affichage logos partenaires
 st.sidebar.image("assets/images/logo_opt.png", width=250)
 st.sidebar.image("assets/images/logo_unc.jpg", width=250)
+
+# Ajout du style et du script pour le tooltip
+st.markdown("""
+<style>
+    [data-testid="stBaseButton-headerNoPadding"]:hover::after {
+        content: "Ouvrir / Fermer";
+        color: white;
+    }
+</style>
+""", unsafe_allow_html=True)
