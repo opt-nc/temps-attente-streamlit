@@ -57,6 +57,13 @@ if communes:
                 st.query_params["idAgence"] = agence["idAgence"]
         
         gauge(round(temps_attente_agence/60))
+
+        st.markdown(
+            f"""
+            <h1 style='text-align: center;'>{selected_agence}</h1>
+            """, 
+            unsafe_allow_html=True
+        )
         
 # affichage logos partenaires
 st.sidebar.image("assets/images/logo_opt.png", width=250)
