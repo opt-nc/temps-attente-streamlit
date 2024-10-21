@@ -26,7 +26,7 @@ if "idAgence" in st.query_params:
 
 
 # Récupérer les communes (mise en cache)
-communes = fetch_communes()
+communes = sorted(fetch_communes())
 
 if communes:
     # menu déroulant pour sélection de commune
