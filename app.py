@@ -1,19 +1,27 @@
 import streamlit as st
 from streamlit_autorefresh import st_autorefresh
-from utils import INTERVALLE_AUTOREFRESH, get_current_time, gauge, fetch_communes, fetch_agences, fetch_agence_by_id
+from utils import INTERVALLE_AUTOREFRESH, get_current_time, check_valid_hours, gauge, fetch_communes, fetch_agences, fetch_agence_by_id
 
 
 st.set_page_config(page_title='Temps d\'attente en agence OPT-NC', layout = 'wide', page_icon = 'assets/images/favicon.jpg', initial_sidebar_state = 'auto')
 
 st_autorefresh(interval=INTERVALLE_AUTOREFRESH * 1000, key="dataframerefresh")
 
-current_time = get_current_time()
+current_time = get_current_time().strftime("Nous sommes le %d/%m/%Y et il est %H:%M")
 st.markdown(
     f"""
     <h1 style='text-align: center;'>{current_time}</h1>
     """, 
     unsafe_allow_html=True
 )
+
+if not check_valid_hours("07:45", "15:30"):
+    st.markdown(
+    "<h3 style='text-align: center;'>Les agences ne sont ouvertes que du lundi au vendredi de 07:45 à 15:30.</h1>", 
+    unsafe_allow_html=True
+    )
+    st.stop()
+
 
 # si aucun id n'est passé dans l'url, on ne met rien
 selected_commune_param = None
