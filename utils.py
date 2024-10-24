@@ -1,5 +1,5 @@
 import streamlit as st
-from datetime import datetime
+from datetime import datetime, time
 import os
 from dotenv import load_dotenv
 import pytz
@@ -9,14 +9,25 @@ import requests
 INTERVALLE_AUTOREFRESH = 3 * 60 # 3 minutes
 API_TEMPS_ATTENTE_BASE_URL = "https://api.opt.nc/temps-attente-agences/"
 
-
-# Fixer le fuseau horaire de la Nouvelle-Calédonie
-ncl_tz = pytz.timezone('Pacific/Noumea')
-
 # Obtenir la datetime dans le fuseau horaire de NC
 def get_current_time():
+    ncl_tz = pytz.timezone('Pacific/Noumea')
     ncl_time = datetime.now(ncl_tz)
-    return ncl_time.strftime("Nous sommes le %d/%m/%Y et il est %H:%M")
+    return ncl_time
+
+def check_valid_hours(start, end):
+    current_weekday = get_current_time().weekday()
+    # Vérifier si c'est un samedi ou un dimanche
+    if current_weekday in (5, 6):  # 5 = samedi, 6 = dimanche
+        return False
+    start_time = datetime.strptime(start, "%H:%M").time()
+    end_time = datetime.strptime(end, "%H:%M").time()
+    
+    current_time = get_current_time().time()
+    if start_time <= current_time <= end_time:
+        return True
+    else:
+        return False
 
 def load_apikey():
     # Charger le fichier .env
