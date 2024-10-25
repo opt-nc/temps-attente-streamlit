@@ -1,6 +1,7 @@
 import streamlit as st
 from streamlit_autorefresh import st_autorefresh
-from utils import INTERVALLE_AUTOREFRESH, get_current_time, check_valid_hours, gauge, fetch_communes, fetch_agences, fetch_agence_by_id
+from utils import INTERVALLE_AUTOREFRESH, get_current_time, check_valid_hours, gauge, fetch_communes, fetch_agences, fetch_agence_by_id,fetch_agence_historique
+from datetime import timedelta
 
 
 st.set_page_config(page_title='Temps d\'attente en agence OPT-NC', layout = 'wide', page_icon = 'assets/images/favicon.jpg', initial_sidebar_state = 'auto')
@@ -72,6 +73,20 @@ if communes:
             """, 
             unsafe_allow_html=True
         )
+
+        #récuper l'id de l'agence
+        id_agence=st.query_params["idAgence"]
+        # Début de la journée à 7h45 avec décalage de -11 heures (fuseau UTC)
+        debut = (get_current_time().replace(hour=7, minute=45, second=0, microsecond=0) - timedelta(hours=11)).strftime("%Y-%m-%dT%H:%M:%S")
+        #heure de fin = heure actuelle moins un décalage de 11 heures
+        fin = (get_current_time() - timedelta(hours=11)).strftime("%Y-%m-%dT%H:%M:%S")
+        # Récupérer l'historique de la journée actuelle
+        df = fetch_agence_historique(id_agence,debut,fin)
+        if not df.empty:          
+            #afficher le graphique
+            st.line_chart(df.set_index("Time"))
+        else:
+            st.write("Aucune donnée disponible pour l'historique de l'agence sélectionnée.")
         
 # affichage logos partenaires
 st.sidebar.image("assets/images/logo_opt.png", width=250)

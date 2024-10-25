@@ -60,8 +60,9 @@ cd temps-attente-streamlit
 # Builder l'image  
 docker build -t hellooptnc .
 
-# Créer un fichier .env avec la clé API
-OPTNC_WAITINGTIME_APIKEY=[clé API]
+# Créer un fichier .env avec les clés API
+OPTNC_WAITINGTIME_APIKEY=[clé API APIGEE]
+OPTNC_WAITINGTIME_APIKEY_RAPIDAPI=[clé API Rapidapi]
 
 # Démarrer l'application via Docker  
 docker run -p 80:8501 --env-file .env hellooptnc
@@ -73,9 +74,9 @@ Pour accéder à l'application, aller sur : http://localhost
 xdg-open http://localhost
 ```
 
-👀 **Vérifier** que la page web affiche bien "Hello OPT-NC" 
+👀 **Vérifier** que la page web s'affiche 
 
-![image](https://github.com/user-attachments/assets/4a727dd3-908c-4dd5-8468-170284f2e3fa)
+![image](https://github.com/user-attachments/assets/c89221c0-4c13-4d10-8ec7-09fd1b77811f)
 
 
 
