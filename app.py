@@ -83,8 +83,8 @@ if communes:
         # Récupérer l'historique de la journée actuelle
         df = fetch_agence_historique(id_agence,debut,fin)
         if not df.empty:          
-            #afficher le graphique
-            st.line_chart(df.set_index("Time"))
+            #afficher l'histogramme
+            st.bar_chart(df.set_index("Time"))
         else:
             st.write("Aucune donnée disponible pour l'historique de l'agence sélectionnée.")
         
