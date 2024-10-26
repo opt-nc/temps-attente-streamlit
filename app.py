@@ -30,10 +30,13 @@ if not check_valid_hours("07:45", "15:30"):
 selected_commune_param = None
 selected_agence_param = None
 
-if "idAgence" in st.query_params:
-    agence = fetch_agence_by_id(st.query_params["idAgence"])
-    selected_commune_param = agence["commune"]
-    selected_agence_param = agence["designation"]
+# Permet de ne charger l'agence mit en query parameters seulement au chargement de la page
+if 'page_loaded' not in st.session_state:
+    st.session_state.page_loaded = True
+    if "idAgence" in st.query_params:
+        agence = fetch_agence_by_id(st.query_params["idAgence"])
+        selected_commune_param = agence["commune"]
+        selected_agence_param = agence["designation"]
 
 
 # Récupérer les communes (mise en cache)
