@@ -2,6 +2,8 @@ import streamlit as st
 from streamlit_autorefresh import st_autorefresh
 from utils import INTERVALLE_AUTOREFRESH, get_current_time, check_valid_hours, gauge, fetch_communes, fetch_agences, fetch_agence_by_id,fetch_agence_historique
 from datetime import timedelta
+import altair as alt
+import pandas as pd
 
 
 st.set_page_config(page_title='Temps d\'attente en agence OPT-NC', layout = 'wide', page_icon = 'assets/images/favicon.jpg', initial_sidebar_state = 'auto')
@@ -75,19 +77,31 @@ if communes:
         )
 
         #récuper l'id de l'agence
-        id_agence=st.query_params["idAgence"]
+        id_agence = st.query_params["idAgence"]
         # Début de la journée à 7h45 avec décalage de -11 heures (fuseau UTC)
         debut = (get_current_time().replace(hour=7, minute=45, second=0, microsecond=0) - timedelta(hours=11)).strftime("%Y-%m-%dT%H:%M:%S")
         #heure de fin = heure actuelle moins un décalage de 11 heures
         fin = (get_current_time() - timedelta(hours=11)).strftime("%Y-%m-%dT%H:%M:%S")
         # Récupérer l'historique de la journée actuelle
-        df = fetch_agence_historique(id_agence,debut,fin)
-        if not df.empty:          
-            #afficher l'histogramme
-            st.bar_chart(df.set_index("Time"))
+        df = fetch_agence_historique(id_agence, debut, fin)
+        if not df.empty:
+            # couleur selon le temps d'attente
+            df['Color'] = pd.cut(
+                df['Waiting Time (minutes)'],
+                bins=[0, 5, 10, float('inf')],
+                labels=['green', 'orange', 'red']
+            )
+            # création graphique avec couleur 
+            chart = alt.Chart(df).mark_bar().encode(
+                x=alt.X("Time:T", title="Heures"),
+                y=alt.Y("Waiting Time (minutes):Q", title="Temps d'attente (minutes)"),
+                color=alt.Color("Color:N", scale=None, legend=None)
+            )
+            # Afficher l'histogramme
+            st.altair_chart(chart, use_container_width=True)
         else:
             st.write("Aucune donnée disponible pour l'historique de l'agence sélectionnée.")
-        
+
 # affichage logos partenaires
 st.sidebar.image("assets/images/logo_opt.png", width=250)
 st.sidebar.image("assets/images/logo_unc.jpg", width=250)
