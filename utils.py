@@ -5,9 +5,11 @@ from dotenv import load_dotenv
 import pytz
 import plotly.graph_objects as go
 import requests
+import pandas as pd
 
 INTERVALLE_AUTOREFRESH = 3 * 60 # 3 minutes
 API_TEMPS_ATTENTE_BASE_URL = "https://api.opt.nc/temps-attente-agences/"
+API_TEMPS_ATTENTE_BASE_URL_RAPIDAPI = "https://temps-attente-en-agence.p.rapidapi.com/"
 
 # Obtenir la datetime dans le fuseau horaire de NC
 def get_current_time():
@@ -33,6 +35,10 @@ def load_apikey():
     # Charger le fichier .env
     load_dotenv()
     return os.getenv("OPTNC_WAITINGTIME_APIKEY")
+
+def load_apikey_rapidapi():
+    load_dotenv()
+    return os.getenv("OPTNC_WAITINGTIME_APIKEY_RAPIDAPI")
 
 def gauge(temps_attente):
     plage_temps = [5, 10, 15]
@@ -63,6 +69,11 @@ APIKEY = load_apikey()
 headers = {
     "x-apikey": APIKEY,
     "Content-Type": "application/json"
+}
+APIKEY_RAPIDAPI = load_apikey_rapidapi()
+headers_rapidapi = {
+    "x-rapidapi-host":"temps-attente-en-agence.p.rapidapi.com",
+    "x-rapidapi-key": APIKEY_RAPIDAPI
 }
 
 # pas de ttl puisqu'on ne l'appel qu'une seule fois
@@ -106,3 +117,29 @@ def fetch_agence_by_id(id_agence):
     else:
         st.error(f"Erreur lors de la récupération de l'agence {id_agence} : {response.status_code}")
         return []
+
+@st.cache_data(ttl=INTERVALLE_AUTOREFRESH, show_spinner=False)
+def fetch_agence_historique(id_agence,debut,fin):
+    params = {
+        "debut": debut,
+        "fin": fin
+    }
+    response = requests.get(API_TEMPS_ATTENTE_BASE_URL_RAPIDAPI + f"agences/{id_agence}/historique", headers=headers_rapidapi, params=params)
+    if response.status_code == 200:
+        historique = response.json()
+        # Récupération des timestamps et des temps d'attente max en minutes
+        times = [entry['timestamp'] for entry in historique]
+        waiting_times = [entry['realMaxWaitingTimeMs'] / 60000 for entry in historique]  # Convertir en minutes
+        # Convertir les timestamps en objets datetime
+        times = pd.to_datetime(times, format="%Y-%m-%dT%H:%M:%S.%f", errors='coerce')
+        # Ajouter un décalage de +11 heures pour correspondre à UTC+11
+        times = times + pd.Timedelta(hours=11)
+        # Créer un DataFrame avec les données
+        df = pd.DataFrame({
+            "Time": times,
+            "Waiting Time (minutes)": waiting_times
+        })
+        return df
+    else:
+        st.error(f"Erreur lors de la récupération de l'historique pour l'agence {id_agence} : {response.status_code}")
+        return [], []
