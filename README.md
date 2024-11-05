@@ -10,6 +10,7 @@ sur des problématiques en lien avec le monde de l'entreprise.
 - 👦 Dev : [Morgan CARRE](https://github.com/morgancarre)
 - 🧔 PO/Tuteur : [Adrien](https://dev.to/adriens)
 - 👱‍♀️ Dev Expert : [Michèle BARRE](https://github.com/mbarre/)
+- 🧑‍💻 API support : [Vinh Faucher](https://github.com/Supervinh)
 
 # 🍿 Video introductive
 
