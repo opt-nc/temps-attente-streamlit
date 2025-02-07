@@ -18,12 +18,12 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-if not check_valid_hours("07:45", "15:30"):
-    st.markdown(
-    "<h3 style='text-align: center;'>Les agences ne sont ouvertes que du lundi au vendredi de 07:45 à 15:30.</h1>", 
-    unsafe_allow_html=True
-    )
-    st.stop()
+# if not check_valid_hours("07:45", "15:30"):
+#     st.markdown(
+#     "<h3 style='text-align: center;'>Les agences ne sont ouvertes que du lundi au vendredi de 07:45 à 15:30.</h1>", 
+#     unsafe_allow_html=True
+#     )
+#     st.stop()
 
 
 # si aucun id n'est passé dans l'url, on ne met rien
