@@ -1,0 +1,17 @@
+services:
+  app:
+    image: temps-attente-streamlit
+    build:
+      context: .
+      dockerfile: Dockerfile
+    network_mode: "host"  # Utilisation du réseau de l'hôte
+    env_file:
+      - .env
+    restart: unless-stopped
+    # dns:
+    #   - 1.1.1.1
+
+# networks:
+#   streamlit_network:
+#     name: streamlit_network
+#     driver: bridge
